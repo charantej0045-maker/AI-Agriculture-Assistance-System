@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Agriculture Assistance System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <section id="loginPage" class="page">
+    <div class="login-wrap">
+      <div class="login-brand">
+        <div class="leaf">🌱</div>
+        <h1>AI Agriculture<br>Assistance System</h1>
+        <p>Smart farming support using agricultural data, analytics and AI-based recommendations.</p>
+        <div class="features">
+          <div class="feature">🌾 Crop Recommendation</div>
+          <div class="feature">🧪 Fertilizer Advice</div>
+          <div class="feature">📈 Yield Prediction</div>
+          <div class="feature">💧 Water Requirement</div>
+        </div>
+      </div>
+
+      <div class="login-box">
+        <h2>Farmer Login</h2>
+        <p class="sub">Sign in to access your smart farm dashboard.</p>
+
+        <label for="farmerId">Farmer ID</label>
+        <input id="farmerId" placeholder="Enter Farmer ID" autocomplete="username" />
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Enter Password" autocomplete="current-password" />
+
+        <div id="error" class="error"></div>
+        <button class="login-btn" onclick="login()">LOGIN TO DASHBOARD →</button>
+        <div class="demo-note">Demo credentials: Farmer ID <b>FARM001</b> &nbsp;|&nbsp; Password <b>1234</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboardPage" class="page hidden">
+    <header class="topbar">
+      <div class="brand">🌱 AI Smart Farm</div>
+      <div>
+        <span class="user-pill">👨‍🌾 <span id="loggedUser">FARM001</span></span>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </header>
+
+    <main class="dash">
+      <section class="welcome">
+        <h1>Welcome, Farmer! 🌾</h1>
+        <p>Enter your current farm conditions and generate agricultural recommendations.</p>
+      </section>
+
+      <div class="layout">
+        <div class="card">
+          <h2>🌦️ Farm Conditions</h2>
+          <div class="input-grid">
+            <div class="full">
+              <label>Soil Type</label>
+              <select id="soil">
+                <option>Loamy</option>
+                <option>Clay</option>
+                <option>Sandy</option>
+                <option>Black Soil</option>
+                <option>Red Soil</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Season</label>
+              <select id="season">
+                <option>Kharif</option>
+                <option>Rabi</option>
+                <option>Summer</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Temperature °C</label>
+              <input id="temp" type="number" value="27" />
+            </div>
+
+            <div>
+              <label>Humidity %</label>
+              <input id="humidity" type="number" value="68" />
+            </div>
+
+            <div>
+              <label>Rainfall mm</label>
+              <input id="rain" type="number" value="720" />
+            </div>
+
+            <div>
+              <label>Moisture %</label>
+              <input id="moisture" type="number" value="42" />
+            </div>
+
+            <div>
+              <label>Nitrogen (N)</label>
+              <input id="n" type="number" value="82" />
+            </div>
+
+            <div>
+              <label>Phosphorus (P)</label>
+              <input id="p" type="number" value="48" />
+            </div>
+
+            <div>
+              <label>Potassium (K)</label>
+              <input id="k" type="number" value="46" />
+            </div>
+          </div>
+
+          <button class="analyze" onclick="generateRecommendation()">✨ GENERATE RECOMMENDATION</button>
+        </div>
+
+        <div class="card">
+          <h2>🤖 AI Agriculture Recommendations</h2>
+          <div class="results">
+            <div class="result"><small>🌾 Recommended Crop</small><strong id="crop">—</strong></div>
+            <div class="result"><small>🧪 Fertilizer Suggestion</small><strong id="fert">—</strong></div>
+            <div class="result"><small>📈 Estimated Yield</small><strong id="yield">—</strong></div>
+            <div class="result"><small>💧 Water Requirement</small><strong id="water">—</strong></div>
+          </div>
+
+          <div class="score-card">
+            <b>🌱 Farm Condition Score</b>
+            <div class="bar"><div id="scorebar" class="fill"></div></div>
+            <span id="score" class="badge">Waiting for analysis</span>
+          </div>
+
+          <div id="explain" class="explanation">
+            Enter farm conditions and click <b>Generate Recommendation</b>. This is a beginner-friendly demo connected to a backend prediction API.
+          </div>
+
+          <button class="download-btn" onclick="downloadReport()">Download Report</button>
+        </div>
+      </div>
+
+      <div class="footer">AI Agriculture Assistance System • Beginner Full-Stack Project</div>
+    </main>
+  </section>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
